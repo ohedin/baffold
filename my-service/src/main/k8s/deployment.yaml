@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-server
+        version: v1
+    spec:
+      containers:
+      - name: my-server
+        image: my-image
+        imagePullPolicy: Always

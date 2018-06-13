@@ -1,0 +1,13 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  artifacts:
+  - imageName: my-image
+    workspace: .
+    bazel:
+      target: //:my-image-root.tar
+  local: {}
+deploy:
+  kubectl:
+    manifests:
+      - my-service/src/main/k8s/*.yaml

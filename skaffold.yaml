@@ -2,12 +2,16 @@ apiVersion: skaffold/v1alpha2
 kind: Config
 build:
   artifacts:
-  - imageName: my-image
+  - imageName: gcr.io/baffold/baffold-java
     workspace: .
     bazel:
-      target: //:my-image-root.tar
+      target: //baffold-java:baffold-java.tar
+  - imageName: gcr.io/baffold/baffold-go
+    workspace: .
+    bazel:
+      target: //baffold-go:baffold-go.tar
   local: {}
 deploy:
   kubectl:
     manifests:
-      - my-service/src/main/k8s/*.yaml
+      - baffold-k8s/sub/pod-*.yaml

@@ -4,19 +4,11 @@ java_library(
     name = "server",
     srcs = glob(["src/main/java/server/Server.java"]),
     deps = [],
-)
-
-java_binary(
-    name = "my-server",
-    main_class = "server.Server",
-    runtime_deps = [
-        ":server",
-    ],
     visibility = ["//visibility:public"],
 )
 
 java_image(
-    name = "my-image",
+    name = "baffold-java",
     main_class = "server.Server",
     runtime_deps = [
         ":server",

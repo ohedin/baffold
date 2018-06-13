@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: baffold-java-root
+spec:
+  containers:
+  - name: baffold-java-root
+    image: gcr.io/baffold/baffold-java-root

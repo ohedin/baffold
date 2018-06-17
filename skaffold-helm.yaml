@@ -1,0 +1,25 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - imageName: gcr.io/baffold/baffold-java-root
+    workspace: .
+    bazel:
+      target: //:baffold-java-root.tar
+  - imageName: gcr.io/baffold/baffold-go-root
+    workspace: .
+    bazel:
+      target: //:baffold-go-root.tar
+  local: {}
+deploy:
+  helm:
+    releases:
+    - name: baffold-helm
+      chartPath: baffold-helm
+      namespace: default
+      values:
+        baffold_java_image: gcr.io/baffold/baffold-java-root
+        baffold_go_image: gcr.io/baffold/baffold-go-root
+

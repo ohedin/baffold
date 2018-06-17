@@ -18,6 +18,7 @@ Run :
 ### Helm mode
 
 Run :
+ * skaffold build -f skaffold-helm.yaml
  * skaffold dev -f skaffold-helm.yaml
 
 ## Use of sub targets

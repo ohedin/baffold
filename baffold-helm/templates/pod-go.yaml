@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: baffold-go-root
+  labels:
+    app: {{ template "baffold-helm.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  containers:
+  - name: baffold-go-root
+    image: {{ .Values.baffold_go_image}}
+    imagePullPolicy: {{ .Values.pullPolicy }}

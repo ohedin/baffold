@@ -10,8 +10,15 @@ Also used to show a problem with skaffold with non root image targets.
  * Install [bazel](https://bazel.build/)
  * Install [skaffold](https://github.com/GoogleContainerTools/skaffold)
 
-Then run :
+### Standard mode
+
+Run :
  * skaffold dev -f skaffold-root.yaml
+
+### Helm mode
+
+Run :
+ * skaffold dev -f skaffold-helm.yaml
 
 ## Use of sub targets
 

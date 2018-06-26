@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: baffold-go-root
-    image: gcr.io/baffold/baffold-go-root
+    image: gcr.io/sandbox-ddp/baffold-go-root

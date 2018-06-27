@@ -3,7 +3,8 @@ workspace(name = "baffold")
 git_repository(
     name = "io_bazel_rules_docker",
     remote = "https://github.com/bazelbuild/rules_docker.git",
-    tag = "v0.4.0",
+    #tag = "v0.4.0",
+    commit = "b4627bd26a14315735e587437b49112767d0fc20",
 )
 
 http_archive(
@@ -26,6 +27,38 @@ go_register_toolchains()
 # load gazelle
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
+
+# load js rules
+git_repository(
+    name = "build_bazel_rules_nodejs",
+    remote = "https://github.com/bazelbuild/rules_nodejs.git",
+    tag = "0.10.0", # check for the latest tag when you install
+)
+
+load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "npm_install")
+
+node_repositories(package_json = ["//:package.json"])
+
+#load("@build_bazel_rules_nodejs//:defs.bzl", "npm_install")
+
+#npm_install(
+#    name = "npm_deps",
+#    package_json = "//:package.json",
+#    package_lock_json = "//:package-lock.json",
+#)
+
+npm_install(
+    name = "npm_deps",
+    package_json = "//:package.json",
+)
+
+load(
+    "@io_bazel_rules_docker//nodejs:image.bzl",
+    _nodejs_image_repos = "repositories",
+)
+
+_nodejs_image_repos()
+
 
 load(
     "@io_bazel_rules_docker//go:image.bzl",

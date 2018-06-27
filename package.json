@@ -1,0 +1,22 @@
+{
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohedin/baffold"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Olivier Hedin",
+  "license": "MIT"
+}

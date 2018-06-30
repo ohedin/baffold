@@ -1,4 +1,4 @@
 replicaCount: 1
-baffold_java_image : gcr.io/baffold/baffold_java_root
-baffold_go_image : gcr.io/baffold/baffold_go_root
+baffold_java_image : gcr.io/sandbox-ddp/baffold_java_root
+baffold_go_image : gcr.io/sandbox-ddp/baffold_go_root
 pullPolicy: IfNotPresent

@@ -1,10 +1,16 @@
 workspace(name = "baffold")
 
+#git_repository(
+#    name = "io_bazel_rules_docker",
+#    remote = "https://github.com/bazelbuild/rules_docker.git",
+#    tag = "v0.4.0",
+#)
+
 git_repository(
     name = "io_bazel_rules_docker",
-    remote = "https://github.com/bazelbuild/rules_docker.git",
+    remote = "https://github.com/Globegitter/rules_docker.git",
     #tag = "v0.4.0",
-    commit = "b4627bd26a14315735e587437b49112767d0fc20",
+    commit = "044cea35912e96b0f6acea3db6b5c421b086538e",
 )
 
 http_archive(
@@ -29,6 +35,12 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
 
 # load js rules
+#git_repository(
+#    name = "build_bazel_rules_nodejs",
+#    remote = "https://github.com/bazelbuild/rules_nodejs.git",
+#    tag = "0.10.0", # check for the latest tag when you install
+#)
+
 git_repository(
     name = "build_bazel_rules_nodejs",
     remote = "https://github.com/bazelbuild/rules_nodejs.git",

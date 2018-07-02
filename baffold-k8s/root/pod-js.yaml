@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: baffold-js-root
-    image: gcr.io/sandbox-ddp/baffold-js-root
+    image: gcr.io/baffold/baffold-js-root

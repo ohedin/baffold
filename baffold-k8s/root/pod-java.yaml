@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: baffold-java-root
-    image: gcr.io/sandbox-ddp/baffold-java-root
+    image: gcr.io/baffold/baffold-java-root

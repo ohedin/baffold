@@ -1,16 +1,9 @@
 workspace(name = "baffold")
 
-#git_repository(
-#    name = "io_bazel_rules_docker",
-#    remote = "https://github.com/bazelbuild/rules_docker.git",
-#    tag = "v0.4.0",
-#)
-
 git_repository(
     name = "io_bazel_rules_docker",
     remote = "https://github.com/Globegitter/rules_docker.git",
-    #tag = "v0.4.0",
-    commit = "044cea35912e96b0f6acea3db6b5c421b086538e",
+    tag = "v0.4.0",
 )
 
 http_archive(
@@ -35,42 +28,33 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
 
 # load js rules
-#git_repository(
-#    name = "build_bazel_rules_nodejs",
-#    remote = "https://github.com/bazelbuild/rules_nodejs.git",
-#    tag = "0.10.0", # check for the latest tag when you install
-#)
 
 git_repository(
     name = "build_bazel_rules_nodejs",
     remote = "https://github.com/bazelbuild/rules_nodejs.git",
-    tag = "0.10.0", # check for the latest tag when you install
+    tag = "0.10.0",
 )
 
 load("@build_bazel_rules_nodejs//:defs.bzl", "node_repositories", "npm_install")
 
 node_repositories(package_json = ["//:package.json"])
 
-#load("@build_bazel_rules_nodejs//:defs.bzl", "npm_install")
-
-#npm_install(
-#    name = "npm_deps",
-#    package_json = "//:package.json",
-#    package_lock_json = "//:package-lock.json",
-#)
-
 npm_install(
     name = "npm_deps",
     package_json = "//:package.json",
 )
 
-load(
-    "@io_bazel_rules_docker//nodejs:image.bzl",
-    _nodejs_image_repos = "repositories",
-)
+# Loads Docker rules for nodejs --> oops not working
+# add comments and build nodejs with base container rules
 
-_nodejs_image_repos()
+#load(
+#    "@io_bazel_rules_docker//nodejs:image.bzl",
+#    _nodejs_image_repos = "repositories",
+#)
+#
+#_nodejs_image_repos()
 
+# Loads Docker rules for go
 
 load(
     "@io_bazel_rules_docker//go:image.bzl",
@@ -87,4 +71,19 @@ load(
 
 _java_image_repos()
 
+# Load docker rules for containers
 
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_pull",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+container_pull(
+  name = "node_base",
+  registry = "index.docker.io",
+  repository = "library/node",
+  tag = "9",
+)

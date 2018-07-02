@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
 
 nodejs_binary(
-    name = "js",
+    name = "baffold-js-bin",
     data = [
             "main.js",
         ],

@@ -1,7 +1,7 @@
 # baffold
 
 Example of use of bazel and skaffold.
-Builds and run a go + java images.
+Builds and run a go + java + nodejs images.
 
 Also used to show a problem with skaffold with non root image targets.
 

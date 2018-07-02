@@ -7,14 +7,6 @@ gazelle(
     prefix = "github.com/ohedin/baffold",
 )
 
-#load("@build_bazel_rules_nodejs//:defs.bzl", "npm_install")
-
-#npm_install(
-#    name = "npm_deps",
-#    package_json = "//:package.json",
-#    package_lock_json = "//:package-lock.json",
-#)
-
 filegroup(name = "node_modules", srcs = glob(["node_modules/**/*"]))
 
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
@@ -37,28 +29,14 @@ go_image(
     static = "on",
 )
 
-#load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
-
-#nodejs_binary(
-#    name = "js",
-#    entry_point = "baffold/baffold-js/main.js",
-#)
-
-load("@io_bazel_rules_docker//nodejs:image.bzl", "nodejs_image")
-
-#nodejs_image(
-#    name = "baffold-js-root",
-#    entry_point = "baffold/baffold-js/main.js",
-#    data = ["//baffold-js:js"],
-#    node_modules = "@//:node_modules",
-#)
-
-nodejs_image(
-    name = "baffold-js-root",
-    data = [
-            "//baffold-js:main.js",
-        ],
-    entry_point = "baffold/baffold-js/main.js",
-    node_modules = "@npm_deps//:node_modules",
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image",
 )
 
+container_image(
+    name = "baffold-js-root",
+    base = "@node_base//image",
+    files = ["//baffold-js:main.js"],
+    cmd = ["node", "main.js"]
+)

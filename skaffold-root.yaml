@@ -2,15 +2,15 @@ apiVersion: skaffold/v1alpha2
 kind: Config
 build:
   artifacts:
-  - imageName: gcr.io/sandbox-ddp/baffold-java-root
+  - imageName: gcr.io/baffold/baffold-java-root
     workspace: .
     bazel:
       target: //:baffold-java-root.tar
-  - imageName: gcr.io/sandbox-ddp/baffold-go-root
+  - imageName: gcr.io/baffold/baffold-go-root
     workspace: .
     bazel:
       target: //:baffold-go-root.tar
-  - imageName: gcr.io/sandbox-ddp/baffold-js-root
+  - imageName: gcr.io/baffold/baffold-js-root
     workspace: .
     bazel:
       target: //:baffold-js-root.tar

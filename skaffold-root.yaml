@@ -10,6 +10,10 @@ build:
     workspace: .
     bazel:
       target: //:baffold-go-root.tar
+  - imageName: gcr.io/baffold/baffold-js-root
+    workspace: .
+    bazel:
+      target: //:baffold-js-root.tar
   local: {}
 deploy:
   kubectl:

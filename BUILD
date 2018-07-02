@@ -1,9 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
 gazelle(
     name = "gazelle",
     prefix = "github.com/ohedin/baffold",
 )
+
+filegroup(name = "node_modules", srcs = glob(["node_modules/**/*"]))
 
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
 
@@ -23,4 +27,16 @@ go_image(
     goos = "linux",
     goarch = "amd64",
     static = "on",
+)
+
+load(
+    "@io_bazel_rules_docker//container:container.bzl",
+    "container_image",
+)
+
+container_image(
+    name = "baffold-js-root",
+    base = "@node_base//image",
+    files = ["//baffold-js:main.js"],
+    cmd = ["node", "main.js"]
 )

@@ -7,7 +7,10 @@ gazelle(
     prefix = "github.com/ohedin/baffold",
 )
 
-filegroup(name = "node_modules", srcs = glob(["node_modules/**/*"]))
+filegroup(
+    name = "node_modules",
+    srcs = glob(["node_modules/**/*"]),
+)
 
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
 
@@ -24,8 +27,8 @@ load("@io_bazel_rules_docker//go:image.bzl", "go_image")
 go_image(
     name = "baffold-go-root",
     embed = ["//baffold-go:baffold-go_linux_bin"],
-    goos = "linux",
     goarch = "amd64",
+    goos = "linux",
     static = "on",
 )
 
@@ -37,6 +40,9 @@ load(
 container_image(
     name = "baffold-js-root",
     base = "@node_base//image",
+    cmd = [
+        "node",
+        "main.js",
+    ],
     files = ["//baffold-js:main.js"],
-    cmd = ["node", "main.js"]
 )
